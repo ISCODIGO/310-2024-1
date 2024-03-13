@@ -28,7 +28,8 @@ public class Main {
             System.out.println("No hay solucion");
         }
 
-        System.out.printf("Cantidad de vueltas atras = %d%n",
+        System.out.println("Recursiones: " + Sudoku.recursiones);
+        System.out.printf("Vueltas atras = %d%n",
                 s.contarBacktracking());
     }
 }

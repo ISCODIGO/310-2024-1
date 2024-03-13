@@ -11,6 +11,7 @@ public class Sudoku {
     private int N;
     private int vueltaAtras;
     private int[][] mapa;
+    public static int recursiones = 0;
 
     public Sudoku(int[][] mapa) {
         this.mapa = mapa;
@@ -29,6 +30,7 @@ public class Sudoku {
     public boolean resolver(int fila, int columna) {
         // Caso base: Regresar si se llega a los extremos
         if (fila == this.N - 1 && columna == this.N) {
+            recursiones++;
             return true;
         }
 
@@ -42,6 +44,7 @@ public class Sudoku {
         // Revisar si la posicion actual no es cero inicia la recursion en la
         // siguiente columna.
         if (mapa[fila][columna] != 0) {
+            recursiones++;
             return resolver(fila, columna + 1);
         }
 
@@ -51,6 +54,7 @@ public class Sudoku {
             // siguiente columna.
             if (esPermitido(fila, columna, num)) {
                 mapa[fila][columna] = num;
+                recursiones++;
 
                 // Caso progresivo: Intenta con la siguiente columna
                 if (resolver(fila, columna + 1)) {
@@ -60,6 +64,7 @@ public class Sudoku {
 
             // En caso de que no sea permitido se elimina el valor anterior,
             // aqui ocurre la vuelta atras (backtracking)
+            recursiones++;
             mapa[fila][columna] = 0;
             vueltaAtras++;
         }
