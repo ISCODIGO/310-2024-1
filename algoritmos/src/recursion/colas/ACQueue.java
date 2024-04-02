@@ -4,32 +4,38 @@ Es una cola implementada con un array.
 
 package recursion.colas;
 
-public class AQueue<T> implements Queue<T> {
+public class ACQueue<T> implements Queue<T> {
     T[] repositorio;
     int size;
     int frente;
     int fin;
 
 
-    public AQueue(int capacity) {
+    public ACQueue(int capacity) {
         repositorio = (T[]) new Object[capacity];
         size = 0;
         fin = -1;
         frente = 0;
     }
 
+    public int siguiente(int pos) {
+        return (pos + 1) % (repositorio.length);
+    }
+
     @Override
     public boolean enqueue(T it) {
         if (size == repositorio.length) return false;
 
-        repositorio[++fin] = it;
+        fin = siguiente(fin);
+        repositorio[fin] = it;
         size++;
         return true;
     }
 
     @Override
     public T dequeue() {
-        T temp = repositorio[frente++];
+        T temp = repositorio[frente];
+        frente = siguiente(frente);
         size--;
         return temp;
     }
@@ -48,7 +54,7 @@ public class AQueue<T> implements Queue<T> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return fin < frente;
     }
     
     public void print() {
