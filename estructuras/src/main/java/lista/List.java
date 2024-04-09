@@ -1,7 +1,9 @@
+package lista;
+
 import java.util.NoSuchElementException;
 
-// List class ADT. Generalize the element type using Java Generics.
-public interface List<E> { // List class ADT
+// lista.List class ADT. Generalize the element type using Java Generics.
+public interface List<E> { // lista.List class ADT
     // Remove all contents from the list, so it is once again empty
     public void clear();
 

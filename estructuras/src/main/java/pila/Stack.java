@@ -1,6 +1,6 @@
-/*
-Definicion del ADT de Stack del cual implementaran todas las
-estructuras de datos denominadas Stack o pila.
+package pila;/*
+Definicion del ADT de pila.Stack del cual implementaran todas las
+estructuras de datos denominadas pila.Stack o pila.
 
  */
 

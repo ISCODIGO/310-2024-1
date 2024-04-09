@@ -1,7 +1,9 @@
+package lista;
+
 import java.util.NoSuchElementException;
 
 // Array-based list implementation
-class AList<E> implements List<E> {
+public class AList<E> implements List<E> {
     private E listArray[];                  // Array holding list elements
     private static final int DEFAULT_SIZE = 10; // Default size
     private int maxSize;                    // Maximum size of list
@@ -11,7 +13,7 @@ class AList<E> implements List<E> {
     // Constructors
     // Create a new list object with maximum size "size"
     @SuppressWarnings("unchecked") // Generic array allocation
-    AList(int size) {
+    public AList(int size) {
         maxSize = size;
         listSize = curr = 0;
         listArray = (E[])new Object[size];         // Create listArray
@@ -50,7 +52,7 @@ class AList<E> implements List<E> {
     // Remove and return the current element
     public E remove() throws NoSuchElementException {
         if ((curr<0) || (curr>=listSize)) {  // No current element
-            throw new NoSuchElementException("remove() in AList has current of " + curr + " and size of "
+            throw new NoSuchElementException("remove() in lista.AList has current of " + curr + " and size of "
                     + listSize + " that is not a a valid element");
         }
         E it = listArray[curr];            // Copy the element
@@ -101,7 +103,7 @@ class AList<E> implements List<E> {
     // Return the current element
     public E getValue() throws NoSuchElementException {
         if ((curr < 0) || (curr >= listSize)) {// No current element
-            throw new NoSuchElementException("getvalue() in AList has current of " + curr + " and size of "
+            throw new NoSuchElementException("getvalue() in lista.AList has current of " + curr + " and size of "
                     + listSize + " that is not a a valid element");
         }
         return listArray[curr];

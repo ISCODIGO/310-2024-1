@@ -1,8 +1,11 @@
 /*
-
-Estructura de datos de Pila utilizando una List (propio) y
-una Stack (propio).
+Estructura de datos de Pila utilizando una lista.List (propio) y
+una pila.Stack (propio).
  */
+package pila;
+
+import lista.List;
+import lista.AList;
 
 public class StackList<E> implements Stack<E> {
     private List<E> repo;
