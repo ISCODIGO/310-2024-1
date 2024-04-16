@@ -1,4 +1,4 @@
-package lista;
+package org.example.demogui.lista;
 
 import java.util.NoSuchElementException;
 
@@ -13,8 +13,8 @@ public class LList<E> implements List<E> {
         }
     }
 
-    public Node<E> head;  // referencia al primer nodo
-    public Node<E> tail;  // referencia al ultimo nodo
+    private Node<E> head;  // referencia al primer nodo
+    private Node<E> tail;  // referencia al ultimo nodo
     private int size;
     private Node<E> curr;  // puntero al nodo actual
 
@@ -37,27 +37,15 @@ public class LList<E> implements List<E> {
 
     @Override
     public boolean insert(E it) {
-        // Cuando no hay nodos
         if (isEmpty()) {
             firstNode(it);
-        }
-        // Insertar al inicio
-        else if (curr == head) {
-            var nuevo = new Node<>(it);
-            nuevo.next = head;
-            head = nuevo;
-        }
-        // Insertar al final
-        else if (curr == tail) {
+        } else if (curr == tail) {
             return append(it);
-        }
-        // Insertar enmedio
-        else {
+        } else {
             var nuevo = new Node<>(it);
             nuevo.next = curr;
             prev();
             curr.next = nuevo;
-            next();  // regresar a la posicion original
         }
 
         size++;
@@ -191,19 +179,48 @@ public class LList<E> implements List<E> {
         throw new NoSuchElementException();
     }
 
-    public E getHeadData() throws NoSuchElementException {
-        if (isEmpty()) throw new NoSuchElementException("Lista vacia");
-        return this.head.data;
-    }
-
-    public E getTailData() throws NoSuchElementException {
-        if (isEmpty()) throw new NoSuchElementException("Lista vacia");
-        return this.tail.data;
-    }
-
     @Override
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public static void main(String[] args) {
+        LList<Integer> lista = new LList<>();
+        lista.append(10);
+
+        System.out.println(lista.size == 1);
+        System.out.println(lista.head.data == 10);
+        System.out.println(lista.tail.data == 10);
+
+        lista.append(20);
+
+        System.out.println(lista.size == 2);
+        System.out.println(lista.head.data == 10);
+        System.out.println(lista.tail.data == 20);
+
+        lista.append(30);
+        lista.moveToEnd();
+        lista.remove();
+
+        System.out.println(lista.size == 2);
+        System.out.println(lista.head.data == 10);
+        System.out.println(lista.tail.data == 20);
+        System.out.println(lista.tail.data);
+
+        lista.moveToStart();
+        lista.insert(40);
+        System.out.println(lista.size == 3);
+        System.out.println(lista.head.data == 40);
+        System.out.println(lista.head.next.data == 10);
+
+        lista.clear();
+
+        lista.insert(50);
+        lista.moveToStart();
+
+        System.out.println(lista.size == 1);
+        System.out.println(lista.head.data == 50);
+        System.out.println(lista.tail.data == 50);
     }
 }
 
